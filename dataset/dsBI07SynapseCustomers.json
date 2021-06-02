@@ -1,0 +1,30 @@
+{
+	"name": "dsBI07SynapseCustomers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsBI07Synapse1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Customer_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyName",
+				"type": "varchar"
+			},
+			{
+				"name": "ContactName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "saCustomers"
+		}
+	}
+}
