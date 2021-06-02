@@ -19,6 +19,13 @@
 						"referenceName": "dfCopyCustomers",
 						"type": "DataFlowReference"
 					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "lssbi07",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "bi07-df"
+					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
