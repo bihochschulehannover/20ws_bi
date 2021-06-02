@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory-Name",
+			"defaultValue": "df2bi02"
+		},
+		"lsBI02Northwind_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lsBI02Northwind\""
+		},
+		"lsBI02Northwind_Neu_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lsBI02Northwind_Neu\""
+		},
+		"lsBI02Synapse_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lsBI02Synapse\""
+		},
+		"lssbi02_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lssbi02\""
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI für Speicherkonto mit verknüpften ARM-Vorlagen"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "SAS-Token für Speicherkonto mit verknüpften ARM-Vorlagen"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "df2bi02_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"lsBI02Northwind_connectionString": {
+						"value": "[parameters('lsBI02Northwind_connectionString')]"
+					},
+					"lsBI02Northwind_Neu_connectionString": {
+						"value": "[parameters('lsBI02Northwind_Neu_connectionString')]"
+					},
+					"lsBI02Synapse_connectionString": {
+						"value": "[parameters('lsBI02Synapse_connectionString')]"
+					},
+					"lssbi02_connectionString": {
+						"value": "[parameters('lssbi02_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
