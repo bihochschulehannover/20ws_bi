@@ -2,7 +2,7 @@
 	"name": "AzureSqlTable1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lsBI02Northwind_Neu",
+			"referenceName": "lsBI02Northwind",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
