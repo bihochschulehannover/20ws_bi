@@ -1,0 +1,28 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "NorthwindCustomer"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsBI02SynapseCustomers",
+						"type": "DatasetReference"
+					},
+					"name": "SynapseCustomer"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tCustomerID as string,\n\t\tCompanyName as string,\n\t\tContactName as string,\n\t\tContactTitle as string,\n\t\tAddress as string,\n\t\tCity as string,\n\t\tRegion as string,\n\t\tPostalCode as string,\n\t\tCountry as string,\n\t\tPhone as string,\n\t\tFax as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> NorthwindCustomer\nNorthwindCustomer sink(input(\n\t\tCustomer_ID as integer,\n\t\tCompanyName as string,\n\t\tContactName as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tstaged: true,\n\tallowCopyCommand: true,\n\tmapColumn(\n\t\tCompanyName,\n\t\tContactName\n\t),\n\tdateFormat:'dd/MM/yyyy',\n\ttimestampFormat:'dd/MM/yyyy',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> SynapseCustomer"
+		}
+	}
+}
