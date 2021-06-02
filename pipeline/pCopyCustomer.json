@@ -1,0 +1,41 @@
+{
+	"name": "pCopyCustomer",
+	"properties": {
+		"activities": [
+			{
+				"name": "dfCopyCustomers",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dfCopyCustomers",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "lssbi06",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "bi06-df"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-05-28T10:53:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
