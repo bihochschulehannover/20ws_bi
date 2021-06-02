@@ -1,0 +1,19 @@
+{
+	"name": "DemoPipeline_BI05",
+	"properties": {
+		"activities": [
+			{
+				"name": "DemoActivity",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-06-02T16:05:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
