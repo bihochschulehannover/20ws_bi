@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory-Name",
+			"defaultValue": "df2bi07"
+		},
+		"lsBI07Northwind_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lsBI07Northwind\""
+		},
+		"lsBI07Synapse_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lsBI07Synapse\""
+		},
+		"lssbi07_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lssbi07\""
+		},
+		"lsBI07Synapse1_connectionString": {
+			"type": "secureString",
+			"metadata": "Sichere Zeichenfolge für \"connectionString\" von \"lsBI07Synapse1\""
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI für Speicherkonto mit verknüpften ARM-Vorlagen"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "SAS-Token für Speicherkonto mit verknüpften ARM-Vorlagen"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "df2bi07_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"lsBI07Northwind_connectionString": {
+						"value": "[parameters('lsBI07Northwind_connectionString')]"
+					},
+					"lsBI07Synapse_connectionString": {
+						"value": "[parameters('lsBI07Synapse_connectionString')]"
+					},
+					"lssbi07_connectionString": {
+						"value": "[parameters('lssbi07_connectionString')]"
+					},
+					"lsBI07Synapse1_connectionString": {
+						"value": "[parameters('lsBI07Synapse1_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
