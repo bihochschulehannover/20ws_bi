@@ -1,0 +1,31 @@
+{
+	"name": "dsBI08SynapseCustomers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsBI08Synapse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Customer_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyName",
+				"type": "varchar"
+			},
+			{
+				"name": "ContactName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "saCustomers"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
